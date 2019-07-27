@@ -3,6 +3,9 @@
 #####################################
 resource "aws_vpc" "vpc_main" {
     cidr_block = "${var.root_segment}"
+    tags {
+        Name = "${var.app_name}"
+    }
 }
 
 #####################################
@@ -69,7 +72,7 @@ resource "aws_route_table" "vpc_main-public-rt" {
         Name = "${var.app_name}-route-table-public"
     }
 }
-
+#ルートテーブルとvpcの紐付け
 resource "aws_route_table_association" "vpc_main-rta1" {
     subnet_id = "${aws_subnet.vpc_main-public-subnet1.id}"
     route_table_id = "${aws_route_table.vpc_main-public-rt.id}"
