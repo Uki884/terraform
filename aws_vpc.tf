@@ -3,8 +3,8 @@
 #####################################
 resource "aws_vpc" "vpc_main" {
     cidr_block = "${var.root_segment}"
-    tags {
-        Name = "${var.app_name}"
+    tags= {
+        Name = "${var.app_name}-vpc"
     }
 }
 
@@ -72,13 +72,33 @@ resource "aws_route_table" "vpc_main-public-rt" {
         Name = "${var.app_name}-route-table-public"
     }
 }
+# resource "aws_route_table" "vpc_main-private-rt" {
+#     vpc_id = "${aws_vpc.vpc_main.id}"
+#     route {
+#         cidr_block = "${var.root_segment}"
+#         gateway_id = "${aws_internet_gateway.vpc_main-igw.id}"
+#     }
+#     tags ={
+#         Name = "${var.app_name}-route-table-private"
+#     }
+# }
 #ルートテーブルとvpcの紐付け
+# public
 resource "aws_route_table_association" "vpc_main-rta1" {
     subnet_id = "${aws_subnet.vpc_main-public-subnet1.id}"
     route_table_id = "${aws_route_table.vpc_main-public-rt.id}"
 }
-
 resource "aws_route_table_association" "vpc_main-rta2" {
     subnet_id = "${aws_subnet.vpc_main-public-subnet2.id}"
     route_table_id = "${aws_route_table.vpc_main-public-rt.id}"
 }
+# private
+
+# resource "aws_route_table_association" "vpc_main-rta3" {
+#     subnet_id = "${aws_subnet.vpc_main-private-subnet1.id}"
+#     route_table_id = "${aws_route_table.vpc_main-private-rt.id}"
+# }
+# resource "aws_route_table_association" "vpc_main-rta4" {
+#     subnet_id = "${aws_subnet.vpc_main-private-subnet2.id}"
+#     route_table_id = "${aws_route_table.vpc_main-private-rt.id}"
+# }

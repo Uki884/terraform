@@ -23,3 +23,8 @@ variable ebs_root_device_name {}      # same value as the default value of the i
 variable ebs_root_volume_type {}            # default is magnetic
 variable ebs_root_volume_size {}
 variable ebs_root_delete_on_termination {}
+
+#certificate
+
+variable "certificate_arn" {}
+

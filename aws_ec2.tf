@@ -1,7 +1,6 @@
 #インスタンス作成 ※subnet_idを動的に変える方法を考える
 resource "aws_instance" "ec2" {
-  count         = 1
-  ami           = "ami-785c491f" # Ubuntu 16.04 LTS official ami
+  ami           = "ami-0ff21806645c5e492" # Ubuntu 16.04 LTS official ami
   instance_type = "t2.micro"
   subnet_id = "${aws_subnet.vpc_main-public-subnet1.id}"
   associate_public_ip_address = "true"
@@ -13,7 +12,7 @@ resource "aws_instance" "ec2" {
   vpc_security_group_ids = ["${aws_security_group.web_sg.id}"]
   key_name = "${var.my_public_key}"
   tags= {
-  Name = "${var.app_name}"
+  Name = "${var.app_name}-web-1a"
   }
 }
 # #ボリューム作成
