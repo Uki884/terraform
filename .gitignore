@@ -1,6 +1,6 @@
-/aws_credential.tf
-/aws_credential.tf
-/terraform.tfstate.backup
-/terraform.tfstate
-/get-pip.py
-/.terraform
+aws_credential.tf
+aws_credential.tf
+terraform.tfstate.backup
+terraform.tfstate
+get-pip.py
+.terraform
