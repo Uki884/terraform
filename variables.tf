@@ -28,3 +28,8 @@ variable ebs_root_delete_on_termination {}
 
 variable "certificate_arn" {}
 
+variable "db_password" {}
+
+variable "db_name" {}
+
+

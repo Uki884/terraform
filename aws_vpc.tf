@@ -2,6 +2,7 @@
 # VPC Settings
 #####################################
 resource "aws_vpc" "vpc_main" {
+    enable_dns_hostnames = "enable"
     cidr_block = "${var.root_segment}"
     tags= {
         Name = "${var.app_name}-vpc"
